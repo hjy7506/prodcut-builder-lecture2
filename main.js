@@ -46,6 +46,25 @@ customElements.define('lotto-number', LottoNumber);
 
 const generateBtn = document.getElementById('generate-btn');
 const numbersContainer = document.getElementById('numbers-container');
+const themeToggle = document.getElementById('theme-toggle');
+
+const setTheme = (theme) => {
+  const isDark = theme === 'dark';
+  document.body.classList.toggle('dark-mode', isDark);
+  themeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  themeToggle.setAttribute(
+    'aria-label',
+    isDark ? 'Switch to light mode' : 'Switch to dark mode'
+  );
+  localStorage.setItem('theme', theme);
+};
+
+const savedTheme = localStorage.getItem('theme') || 'light';
+setTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark');
+});
 
 generateBtn.addEventListener('click', () => {
   numbersContainer.innerHTML = '';

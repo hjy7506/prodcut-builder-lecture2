@@ -1,17 +1,35 @@
 
 :root {
     --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
     --secondary-color: #6c757d;
     --background-color: #f8f9fa;
+    --surface-color: #fff;
     --text-color: #212529;
+    --button-text-color: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --button-shadow-color: rgba(0, 123, 255, 0.4);
     --white: #fff;
     --font-family: 'Helvetica Neue', sans-serif;
+}
+
+body.dark-mode {
+    --primary-color: #4dabf7;
+    --primary-hover-color: #339af0;
+    --secondary-color: #adb5bd;
+    --background-color: #121416;
+    --surface-color: #1f2328;
+    --text-color: #f1f3f5;
+    --button-text-color: #0b1014;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --button-shadow-color: rgba(77, 171, 247, 0.3);
 }
 
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -22,12 +40,35 @@ body {
 }
 
 .container {
-    background: var(--white);
+    background: var(--surface-color);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px var(--shadow-color);
     max-width: 500px;
     width: 100%;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.theme-control {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+#theme-toggle {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--secondary-color);
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: var(--background-color);
+    border-color: var(--primary-color);
 }
 
 h1 {
@@ -57,24 +98,24 @@ lotto-number {
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--white);
+    color: var(--button-text-color);
     background-color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 #generate-btn {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--button-text-color);
     border: none;
     padding: 15px 30px;
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 4px 12px var(--button-shadow-color);
 }
 
 #generate-btn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.5);
+    background-color: var(--primary-hover-color);
+    box-shadow: 0 6px 16px var(--button-shadow-color);
 }
