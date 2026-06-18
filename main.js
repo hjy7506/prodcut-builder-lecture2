@@ -2,9 +2,7 @@ class LottoNumber extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: 'open' });
-    const number = this.getAttribute('number');
-    const wrapper = document.createElement('div');
-    wrapper.textContent = number;
+    this.wrapper = document.createElement('div');
 
     const style = document.createElement('style');
     style.textContent = `
@@ -24,7 +22,23 @@ class LottoNumber extends HTMLElement {
     `;
 
     shadow.appendChild(style);
-    shadow.appendChild(wrapper);
+    shadow.appendChild(this.wrapper);
+  }
+
+  static get observedAttributes() {
+    return ['number'];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  attributeChangedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.wrapper.textContent = this.getAttribute('number') || '';
   }
 }
 
